@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <!-- USING BOOTSTRAP 4 -->
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="index.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="custom.css">    
+
+    <ul class="nav nav-tabs bg-dark">
+      <li class="nav-item bg-dark">
+        <a class="nav-link active" href="index.html" background-color="bg-dark">Home</a>
+      </li>
+      <li class="nav-item bg-dark">
+        <a class="nav-link active" href="index1.html">Board</a>
+      </li>
+      <li class="nav-item dropdown bg-dark">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Categories</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Category 1 </a>
+          <a class="dropdown-item" href="#">Category 2</a>
+          <a class="dropdown-item" href="#">Category 3</a>
+        </div>
+      </li>
+    </ul>
+
+    <title>Pinterest Board</title>
+
+</head>
+
+<body class="containter-fluid bg-light" onload="initialize()">
+
+    <h2 class="text-center" style="margin:20px">Pinterest Home</h2>
+    
+    <div id ="modals" style="text-align: center; padding-top:0.30%"></div>
+
+
+    <!-- Page Content Below -->
+    <div id="pageLayout" style="padding-top: 2%; padding-left:5%" style="text-align:center">
+        <!-- Cards Displayed on Left -->
+        <div class="card-columns" id="pins">
+            <!-- The div with id=students is where we write all of our student cards dynamically with js -->
+            <!-- <div class="text-center" id="students"></div> -->
+        </div>
+
+    </div>
+
+</body>
+
+</html>
