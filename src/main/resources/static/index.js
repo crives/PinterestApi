@@ -141,8 +141,8 @@ function renderPin(data) {
             + '<div class="card-body text-center">'
             + '<p class="card-text">' + json[index].category + '</p>'
             + '<p class="card-text">' + json[index].description + '</p>'
-            + '<button class="btn" id="update' + json[index].id + '">' + '</button>'
-            + '<button class="btn btn-danger" onclick="deletePin(' + json[index].id + ')">Delete</button>'
+            + '<button class="btn btn-light" id="update' + json[index].id + '">' + '</button>'
+            + '<button class="btn btn-light" onclick="deletePin(' + json[index].id + ')">Delete</button>'
             + '</div>'
             + '</div>'
             + '</div>';

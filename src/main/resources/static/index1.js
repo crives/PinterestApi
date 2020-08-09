@@ -70,7 +70,7 @@ function renderPin(data) {
             + '<p class="crd-text">' + json[index].description + '</p>'
             + '</div>'
             + '<button class="btn" id="update' + json[index].id + '">' + '</button>'
-            + '<button class="btn btn-danger" onclick="deletePin(' + json[index].id + ')">Delete</button>'
+            + '<button class="btn btn-light" style="color:lightgray" onclick="deletePin(' + json[index].id + ')">Delete</button>'
             + '</div>'
             + '</div>'
             + '</div>'
@@ -101,11 +101,12 @@ function renderModal(modalPurpose, id) {
     var btntxt;
     var pin;
     var pinID = '';
+    var style;
 
     switch (modalPurpose) {
         case "createPin":
             location = id;
-            color = "btn-dark";
+            color = "btn-light";
             btntxt = "Create Pin";
             title = 'Create Pin';
             break;
@@ -113,13 +114,14 @@ function renderModal(modalPurpose, id) {
             pin = getOnePin(id);
             pinID = JSON.parse(pin).id;
             location = "update" + id;
-            color = "btn-warning";
+            color = "btn-light";
             btntxt = "Update";
             title = 'Update Pin';
+            style = 'color:lightgray'
             break;
     }
 
-    var buttonHtml = '<button type="button" class="btn ' + color + '" data-toggle="modal" data-target="#' + modalPurpose + pinID + '">' + btntxt + '</button>';
+    var buttonHtml = '<button type="button" class="btn ' + color + '" style=" ' + style + '" data-toggle="modal" data-target="#' + modalPurpose + pinID + '">' + btntxt + '</button>';
     document.getElementById(location).insertAdjacentHTML('beforeend', buttonHtml);
 
 
