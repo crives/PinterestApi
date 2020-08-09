@@ -70,12 +70,13 @@ function renderPin(data) {
                         + '<h2 class=crd-heading" style="margin-bottom:0">' + '<span>' + json[index].title 
                             + '<div class="btn" id="update' + json[index].id + '">' + '</div>'
                             + '<button class="btn btn-light" style="color:lightgray" onclick="deletePin(' + json[index].id + ')">Delete</button>'
+                            + '</h2>'
                             + '<span>' 
-                        + '</h2>'
-                        + '<p class="crd-text bottom-right">' + json[index].category + '</p>'
-                        + '<p class="crd-text bottom-right">' + json[index].description + '</p>'
-                        
-                    // + '</div>'
+                     
+                        + '<div>' + '<p class="crd-text bottom-right">' + json[index].category + '</p>'
+                        + '</div>'
+                        + '<div>' + '<p class="crd-text">' + json[index].description + '</p>'
+                        + '</div>'
                 + '</div>'
             + '</div>';
 
