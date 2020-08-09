@@ -2,6 +2,7 @@
 function initialize() {
 
     renderModal("createPin", "modals");
+
     getPins("/api/pins");
 }
 
@@ -9,7 +10,9 @@ function getPins(url) {
 
     var xhttpList = new XMLHttpRequest();
 
+    // Read JSON - and put in storage
     xhttpList.onreadystatechange = function () {
+
         if (this.readyState == 4 && this.status == 200) {
             renderPin(this.responseText);
         }
@@ -17,6 +20,7 @@ function getPins(url) {
     xhttpList.open("GET", url, true);
     xhttpList.send();
     console.log("Pins received");
+
 }
 
 // Working On
@@ -27,17 +31,16 @@ function getCategories() {
     getRestaurants("/api/restaurants/delivery");
 }
 
-function getCategoriesByName() {
-    
-}
 
-function getPinById(id) {
+function getOnePin(id) {
     var url = "/api/pins/" + id;
     //make initial api call to get Student list
     var xhttpList = new XMLHttpRequest();
     var pin;
 
+    // Read JSON - and put in storage
     xhttpList.onreadystatechange = function () {
+
         if (this.readyState == 4 && this.status == 200) {
             sessionStorage.setItem("pin", this.responseText);
         }
@@ -49,46 +52,51 @@ function getPinById(id) {
     return sessionStorage.getItem("pin");
 }
 
-function renderPin(json) {
-
-    var cardHtml = 
-    `<div class="card crd--effect-3" max-height="225" id="${json.id}">'
-        <img class="crd-img-top" style="width:100%" height="50%" src=${json.imagePath} alt="Card Image">
-        <div class="card-body">
-            <h4 class="card-title crd-heading">${json.title}</h4>
-            <p class="crd-text">${json.category}</p>
-            <p class="crd-text">${json.description}</p>
-            <button class="btn" id="update${json.id}"></button>
-            <button class="btn btn-danger" onclick="deletePin(${json.id})">Delete</button>'
-        </div>
-    </div>`;
-    // console.log("Pin Card with ID: " + json[index].id + " created");
-
-    return cardHtml;
-
-}
-
 function renderManyPins(data) {
 
     var jsonArray = JSON.parse(data);
 
-    for (var index = 0; index < jsonArray.length; index++) {
-        let json = jsonArray[index];
-        var card = renderPin(json);
 
-        var cardDeck; 
-        if (index % 4 == 0) {
+}
+
+// This function renders all pins as we receive from our AJAX call
+function renderPin(data) {
+    var json = JSON.parse(data);
+
+    // Ajax returns an array of JSON objects - the index represents each individual JSON object from our AJAX call
+    // We can the iterate over all pins
+    for (var index = 0; index < json.length; index++) {
+        // We write our HTML in a string and use the insertAdjacentHTML(placement, string) where we pass the string to be rendered on our page
+        var cardHtml = '  <div class="card crd--effect-3" style="max-width:500px" id="' + json[index].id + '">'
+            + '<img class="crd-img" style="width=100%" src="' + json[index].imagePath + '"></div>'
+            + '<div class="crd-info"><h2 class=crd-heading">' + '<span>' + json[index].title + '<span>' + '</h2>'
+            // + '<img class="card-img-top" src=' + json[index].imagePath + ' alt="Pin Image" style="width:100%" height="170">'
+            
+            // + '<div class="card-body text-center">'
+            + '<p class="crd-text">' + json[index].category + '</p>'
+            + '<p class="crd-text">' + json[index].description + '</p>'
+            + '<button class="btn" id="update' + json[index].id + '">' + '</button>'
+            + '<button class="btn btn-danger" onclick="deletePin(' + json[index].id + ')">Delete</button>'
+            + '</div>'
+            + '</div>'
+            + '</div>';
+        console.log("Pin Card with ID: " + json[index].id + " created");
+
+
+        // We create a card deck that will dictate our groupings of cards
+          var cardDeck;
+         if (index % 4 == 0) {
              cardDeck = document.createElement("div");
-             cardDeck.classList.add("card-deck");
-             cardDeck.style.width = "85%";
-        }
+             cardDeck.id = "deck" + index;
+             document.getElementById("pins").appendChild(cardDeck);
+             cardDeck = document.getElementById("deck" + index);
+      }
 
-        cardDeck.innerHTML += card;
-        document.getElementById("pins").appendChild(cardDeck);
-        // cardDeck.insertAdjacentHTML('beforeend', cardHtml);
-        // renderModal("updatePin", json[index].id);
+        cardDeck.insertAdjacentHTML('beforeend', cardHtml);
+        // Once the pins are created and rendered on our page, we can then find them and add on the update buttons with associated modals
+        renderModal("updatePin", json[index].id);
     }
-// '<div class="crd-info"><h2 class=crd-heading">' + '<span>' + json[index].title + '<span>' + '</h2>'
+
 }
 
 // This function renders the buttons and modals for our Create and Update students, and calls the renderForm() function that conatains the form data in
@@ -101,6 +109,7 @@ function renderModal(modalPurpose, id) {
     var pin;
     var pinID = '';
 
+    // Switch allows us to choose our format based on Create or Update
     switch (modalPurpose) {
         case "createPin":
             location = id;
@@ -183,6 +192,7 @@ function addPin(id) {
 }
 }
 
+// AJAX create student
 // Ensure you have the correct verb, URI, and headers set.  SendData is a JSON object that conatains our information from the create form
 function createPin() {
 
@@ -287,6 +297,7 @@ function updatePin(id) {
 function renderDropdown() {
 
     document.getElementById("modals").insertAdjacentHTML('beforeend', modalHtml);
+
 
 }
 
