@@ -61,8 +61,8 @@ function renderPin(data) {
 
     for (var index = 0; index < json.length; index++) {
         // We write our HTML in a string and use the insertAdjacentHTML(placement, string) where we pass the string to be rendered on our page
-        var cardHtml = '  <div class="card crd--effect-3" style="max-width:500px" id="' + json[index].id + '">'
-            + '<img class="crd-img" style="width=100%" src="' + json[index].imagePath + '"></div>'
+        var cardHtml = '  <div class="card crd--effect-3" style="max-width:350px" id="' + json[index].id + '">'
+            + '<img class="crd-img" style="width:100%; height:50%" src="' + json[index].imagePath + '"></div>'
             + '<div class="crd-info"><h2 class=crd-heading">' + '<span>' + json[index].title + '<span>' + '</h2>'
             // + '<img class="card-img-top" src=' + json[index].imagePath + ' alt="Pin Image" style="width:100%" height="170">'
             
