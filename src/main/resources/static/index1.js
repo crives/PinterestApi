@@ -1,8 +1,6 @@
-
 function initialize() {
 
     renderModal("createPin", "modals");
-
     getPins("/api/pins");
 }
 
@@ -10,9 +8,7 @@ function getPins(url) {
 
     var xhttpList = new XMLHttpRequest();
 
-    // Read JSON - and put in storage
     xhttpList.onreadystatechange = function () {
-
         if (this.readyState == 4 && this.status == 200) {
             renderPin(this.responseText);
         }
@@ -63,8 +59,6 @@ function renderManyPins(data) {
 function renderPin(data) {
     var json = JSON.parse(data);
 
-    // Ajax returns an array of JSON objects - the index represents each individual JSON object from our AJAX call
-    // We can the iterate over all pins
     for (var index = 0; index < json.length; index++) {
         // We write our HTML in a string and use the insertAdjacentHTML(placement, string) where we pass the string to be rendered on our page
         var cardHtml = '  <div class="card crd--effect-3" style="max-width:500px" id="' + json[index].id + '">'
@@ -93,14 +87,11 @@ function renderPin(data) {
       }
 
         cardDeck.insertAdjacentHTML('beforeend', cardHtml);
-        // Once the pins are created and rendered on our page, we can then find them and add on the update buttons with associated modals
         renderModal("updatePin", json[index].id);
     }
 
 }
 
-// This function renders the buttons and modals for our Create and Update students, and calls the renderForm() function that conatains the form data in
-// a string version of HTML to be rendered.
 function renderModal(modalPurpose, id) {
 
     var location;
@@ -109,7 +100,6 @@ function renderModal(modalPurpose, id) {
     var pin;
     var pinID = '';
 
-    // Switch allows us to choose our format based on Create or Update
     switch (modalPurpose) {
         case "createPin":
             location = id;
@@ -127,7 +117,6 @@ function renderModal(modalPurpose, id) {
             break;
     }
 
-    // Button creation and placement - based on the Switch case above
     var buttonHtml = '<button type="button" class="btn ' + color + '" data-toggle="modal" data-target="#' + modalPurpose + pinID + '">' + btntxt + '</button>';
     document.getElementById(location).insertAdjacentHTML('beforeend', buttonHtml);
 
@@ -192,7 +181,6 @@ function addPin(id) {
 }
 }
 
-// AJAX create student
 // Ensure you have the correct verb, URI, and headers set.  SendData is a JSON object that conatains our information from the create form
 function createPin() {
 
