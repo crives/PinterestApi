@@ -66,17 +66,19 @@ function renderPin(data) {
             '<div class="card crd--effect-3 border-0" style="max-width:350px" id="' + json[index].id + '">'
                 + '<div class="crd-img container">'
                     + '<img class="crd-img" style="width:100%; height:50%" src="' + json[index].imagePath + '">'
-                    + '<div class="bottom-right"><h2 class=crd-heading" style="margin-bottom:0">' + '<span>' + json[index].title + '<span>' + '</h2>'
-                        + '<p class="crd-text">' + json[index].category + '</p>'
-                        + '<p class="crd-text">' + json[index].description + '</p>'
-                        + '<div class="btn" id="update' + json[index].id + '">' + '</div>'
-                        + '<button class="btn btn-light" style="color:lightgray" onclick="deletePin(' + json[index].id + ')">Delete</button>'
-                    + '</div>'
+                    // + '<div class="bottom-right">'
+                        + '<h2 class=crd-heading" style="margin-bottom:0">' + '<span>' + json[index].title 
+                            + '<div class="btn" id="update' + json[index].id + '">' + '</div>'
+                            + '<button class="btn btn-light" style="color:lightgray" onclick="deletePin(' + json[index].id + ')">Delete</button>'
+                            + '<span>' 
+                        + '</h2>'
+                        + '<p class="crd-text bottom-right">' + json[index].category + '</p>'
+                        + '<p class="crd-text bottom-right">' + json[index].description + '</p>'
+                        
+                    // + '</div>'
                 + '</div>'
             + '</div>';
-            // + '</div>'
-            // + '</div>'
-            // + '</div>';
+
         console.log("Pin Card with ID: " + json[index].id + " created");
 
 

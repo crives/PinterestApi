@@ -81,7 +81,7 @@ public class PinController {
 		System.out.println("Created: " + created);
 	}
 
-	@PutMapping("/update/pin/{id}")
+	@PutMapping("/update/pin")
 	public String updatePin(@RequestBody Pin updatePin) {
 		
 		// check if pin exists, then update them
