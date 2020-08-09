@@ -61,8 +61,8 @@ function renderPin(data) {
 
     for (var index = 0; index < json.length; index++) {
         // We write our HTML in a string and use the insertAdjacentHTML(placement, string) where we pass the string to be rendered on our page
-        var cardHtml = '  <div class="card crd--effect-3" style="max-width:350px" id="' + json[index].id + '">'
-            + '<img class="crd-img" style="width:100%; height:50%" src="' + json[index].imagePath + '"></div>'
+        var cardHtml = '  <div class="card crd--effect-3 border-0" style="max-width:350px" id="' + json[index].id + '">'
+            + '<img class="crd-img" style="width:100%; height:50%" src="' + json[index].imagePath + '">'
             + '<div class="crd-info"><h2 class=crd-heading">' + '<span>' + json[index].title + '<span>' + '</h2>'
             // + '<img class="card-img-top" src=' + json[index].imagePath + ' alt="Pin Image" style="width:100%" height="170">'
             
@@ -73,18 +73,19 @@ function renderPin(data) {
             + '<button class="btn btn-danger" onclick="deletePin(' + json[index].id + ')">Delete</button>'
             + '</div>'
             + '</div>'
+            + '</div>'
             + '</div>';
         console.log("Pin Card with ID: " + json[index].id + " created");
 
 
         // We create a card deck that will dictate our groupings of cards
           var cardDeck;
-         if (index % 4 == 0) {
+        if (index % 2 == 0) {
              cardDeck = document.createElement("div");
              cardDeck.id = "deck" + index;
              document.getElementById("pins").appendChild(cardDeck);
              cardDeck = document.getElementById("deck" + index);
-      }
+       }
 
         cardDeck.insertAdjacentHTML('beforeend', cardHtml);
         renderModal("updatePin", json[index].id);
