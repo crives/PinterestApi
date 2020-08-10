@@ -29,9 +29,45 @@ public class PinController {
 	
 	@GetMapping("/pins")
 	public List<Pin> getAllPins() {
+		return service.findAll();		
+	}
+	
+	@GetMapping("/pins/{id}")
+	public Pin getPin(@PathVariable long id) {
 		
-		return service.findAll();
+		Optional<Pin> pin = service.findById(id);
 		
+		if(pin.isPresent()) {
+			return pin.get(); 
+		}
+		
+		return new Pin();
+	}
+	
+	
+	@GetMapping("pins/categories")
+	public List<String> getCategories() {
+		
+		return service.getCategories();
+	}
+	
+	@GetMapping("/pins/category/{category}")
+	public List<Pin> getPinByCategory(@PathVariable String category) {
+		
+		return service.findByCategory(category);
+
+	}
+	
+	@GetMapping("/pins/paris")
+	public List<Pin> getPinsFromParis() {
+		
+		return service.pinsFromFrance();
+	}
+	
+	@GetMapping("/pins/pets")
+	public List<Pin> getPetsPins() {
+		
+		return service.petsPins();
 	}
 	
 	@PostMapping("/add/pin")
@@ -46,52 +82,27 @@ public class PinController {
 		return new Pin();
 	}
 	
-	@GetMapping("/pins/{id}")
-	public Pin getPin(@PathVariable long id) {
-		
-		Optional<Pin> pinOpt = service.findById(id);
-		
-		if(pinOpt.isPresent()) {
-			return pinOpt.get(); 
-		}
-		
-		return new Pin();
-	}
-	
-	@GetMapping("pins/categories")
-	public List<String> getCategories() {
-		
-		return service.getCategories();
-	}
-	
-	
-	@GetMapping("/pins/category/{category}")
-	public List<Pin> findByCategory(@PathVariable String category) {
-		
-		return service.findByCategory(category);
-
-	}
-	
 	@PostMapping("/create/pin")
+	// TODO: Per project req, need to return something in body
 	public void createPin(@RequestBody Pin newPin) {
 		
-		newPin.setId(-1L);
-		
-		Pin created = service.save(newPin);
+		// make sure we don't override an existing Pin by accidentally updating
+		newPin.setId(-1L);	
+		Pin created = service.save(newPin); // save() does an insert or update, depending on id
 		System.out.println("Created: " + created);
 	}
 
 	@PutMapping("/update/pin")
 	public String updatePin(@RequestBody Pin updatePin) {
 		
-		// check if pin exists, then update them
+		// check if pin exists, if so, then update
 		Optional<Pin> found = service.findById(updatePin.getId());
 		
 		if(found.isPresent()) {
 			service.save(updatePin);
 			return "Saved: " + updatePin.toString();
 		} else {
-			return "Could not update student, the id = " + updatePin.getId()
+			return "Could not update pin, the id = " + updatePin.getId()
 				+ " doesn't exist";
 		}
 	}
@@ -108,22 +119,18 @@ public class PinController {
 		
 		if(found.isPresent()) {
 			
-			Pin toUpdate = found.get();
-			
-			Long old = toUpdate.getId();
-			
+			Pin toUpdate = found.get();		
+			Long old = toUpdate.getId();		
 			toUpdate.setCategory(category);
 			
-			// save new department to be able to update it
+			// save new category to be able to update it
 			service.save(toUpdate);
 			
 			return "Old Category: " + old + "\nNew Category: " 
 					+ category;
-		} else {
-			
-			return "Could not update category, Pin with id = " 
-					+ id + " doesn't exist";
-			
+		} else {			
+			return "Could not update category, pin with id = " 
+					+ id + " doesn't exist";		
 		}
 		
 	}
@@ -140,10 +147,8 @@ public class PinController {
 		
 		if(found.isPresent()) {
 			
-			Pin toUpdate = found.get();
-			
+			Pin toUpdate = found.get();	
 			Long old = toUpdate.getId();
-			
 			toUpdate.setCategory(description);
 			
 			// save new department to be able to update it
@@ -151,8 +156,7 @@ public class PinController {
 			
 			return "Old Description: " + old + "\nNew Category: " 
 					+ description;
-		} else {
-			
+		} else {		
 			return "Could not update description, Pin with id = " 
 					+ id + " doesn't exist";
 			
@@ -168,7 +172,6 @@ public class PinController {
 		if(found.isPresent()) {
 			
 			service.deleteById(id);
-
 			return ResponseEntity.status(200).body("Deleted pin with id = "
 					+ id);
 		} else {

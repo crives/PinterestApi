@@ -16,45 +16,32 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="custom.css">
     <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap" rel="stylesheet">
-        
-    <ul class="nav nav-tabs bg-dark">
-      <li class="nav-item bg-dark">
-        <a class="nav-link active" href="index1.html">Home</a>
-      </li>
-<!-- 
-      <li class="nav-item bg-dark">
-        <a class="nav-link active" href="index1.html">Board</a>
-      </li> -->
+    <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
 
+    <ul class="nav nav-tabs bg-dark" style="border: 1px solid transparent;">
+      <li class="nav-item bg-dark">
+        <a class="nav-link bg-dark" style="background-color:dark; color:white" href="index.html">Home</a>
+      </li>
+      <!-- <li class="nav-item bg-dark"> 
+        <a class="nav-link active" href="index1.html">Board</a>
+      </li>  -->
       <li class="nav-item dropdown bg-dark">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Categories</a>
+        <a class="nav-link dropdown-toggle bg-dark" style="color:white" href="index1.html" data-toggle="dropdown">Categories</a>
       <div class="dropdown-menu" id="category-dropdown">
-        <a class="dropdown-item" href="#">First Category</a>
-        <a class="dropdown-item" href="#">Second Category</a>
-        <a class="dropdown-item" href="#">Third Category</a>
+        <a class="dropdown-item" href="index1.html">All Photos</a>
+        <a class="dropdown-item" href="#" onclick="getPinsFromFrance()">France</a>
+        <a class="dropdown-item" href="#" onclick="getPetsPins()">Pets</a>
       </div>
       </li>
     </ul>
-    <title>Pinterest Board</title>
+    <title>Pixbox</title>
     
 </head>
-    
-<body class="containter-fluid" onload="initialize()">
-  <h2 class="text-center" style="margin:20px">Pinterest Board</h2>
-  <div id ="modals" style="text-align: center; padding-top:0.30%"></div>
 
-  <!-- Page Content Below -->
-  <div id="pageLayout" style="padding-top: 2%; padding-left:5%" style="text-align:center">
-  <!-- Cards Displayed on Left -->
-    <div class="card-columns" id="pins">
-    </div>
-<!-- <section>
-      <div id="editAnimation"></div>
-      <script src="edit.js"></script>
-      </section> -->
+<body>
 
-  </div>
-  <img src="https://img.icons8.com/wired/64/000000/pinterest.png"/>
+  <!-- <div class="shape"></div> -->
+  <img src="Images/Paris_Background.jpg" width = "100%" height="100%">
 
 </body>
 

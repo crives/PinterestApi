@@ -1,16 +1,21 @@
 
 body {
-    background-color: white;
-    font-family: 'Patrick Hand SC', cursive;
+    background-color: black;
+    /* font-family: 'Patrick Hand SC', cursive; */
+    font-family: 'Homemade Apple', cursive;
+}
+
+h2 {
+    font-family: 'Homemade Apple', cursive;
 }
 
 .crd--effect-3 .crd-heading {
     position: relative;
-    color: hsla(0, 0%, 90%, .5);
+    /* color: hsla(0, 0%, 90%, .5); */
+    color: white;
   }
   
   .crd--effect-3 .crd-heading span {
-    /* color: hsl(0, 0%, 90%); */
     color: gray;
     position: absolute;
     right: 0;
@@ -59,3 +64,52 @@ body {
     bottom: 8px;
     right: 16px;
   }
+
+/* a {
+    color: white;
+
+} */
+  /* :root {
+	--background: #005;
+	--primary: #88D5BF;
+	--secondary: #5D6BF8;
+	--third: #e27fcb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+} */
+
+/* .shape {
+ 	background: linear-gradient(45deg, var(--primary) 0%, var(--secondary) 100%);
+  animation: morph 8s ease-in-out infinite;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  height: 100px;
+  transition: all 1s ease-in-out;
+  width: 100px;
+  z-index: 5;
+}
+
+@keyframes morph {
+  0% {
+			border-radius:  60% 40% 30% 70% / 60% 30% 70% 40%;
+			background: linear-gradient(45deg, var(--primary) 0%, var(--secondary) 100%);
+	} 
+	
+	50% {
+			border-radius:  30% 60% 70% 40% / 50% 60% 30% 60%;
+			background: linear-gradient(45deg, var(--third) 0%, var(--secondary) 100%);
+	}
+  
+	100% {
+		border-radius:  60% 40% 30% 70% / 60% 30% 70% 40%;
+		background: linear-gradient(45deg, var(--primary) 0%, var(--secondary) 100%);
+	} 
+} */
