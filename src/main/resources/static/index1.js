@@ -83,12 +83,12 @@ function renderPin(data) {
 
         // We create a card deck that will dictate our groupings of cards
           var cardDeck;
-        if (index % 2 == 0) {
+        //  if (index % 5 == 0) {
              cardDeck = document.createElement("div");
              cardDeck.id = "deck" + index;
              document.getElementById("pins").appendChild(cardDeck);
              cardDeck = document.getElementById("deck" + index);
-       }
+        // }
 
         cardDeck.insertAdjacentHTML('beforeend', cardHtml);
         renderModal("updatePin", json[index].id);
